@@ -2,7 +2,7 @@ import React from 'react';
 
 const Home = () => {
   return(
-    <div className="red home z-depth-3">
+    <div className="red home z-depth-3 hidden">
             <h1>So, What's for dinner?</h1>
             <p className="flow-text">
               A question that can make or break a friendship or relationship.

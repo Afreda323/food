@@ -14,7 +14,8 @@ const Results = ({ results, first }) => {
   let numberFix;
   if (first.formatted_phone_number) {
     numberFix = first.formatted_phone_number.replace(" ", "");
-  } 
+  }
+  const direct = `https://www.google.com/maps/place/${results[0].formatted_address.replace(", United States", "").replace(/ /g, "+")}`;
   const number = `tel:${numberFix}`;
   let stars;
   let website;
@@ -41,7 +42,7 @@ const Results = ({ results, first }) => {
           <br />
           {stars}
         </h1>
-        <p className="flow-text center-align">{results[0].formatted_address.replace(", United States", "")}</p>
+        <p className="flow-text center-align"><a href={direct} className="direct">{results[0].formatted_address.replace(", United States", "")}</a></p>
         <div className="center-align">
           <a href={number} className="btn red">Call Them</a>
           {website}

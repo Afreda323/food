@@ -9,11 +9,12 @@ class Btn extends React.Component {
 
   handleClick() {
       document.querySelector(".list").className = "list";
+      document.querySelector('.showResults').className = "hide";
     }
 
   render() {
     return (
-      <button className="btn red z-depth-3" onClick={this.handleClick}>
+      <button className="btn showResults red z-depth-3" onClick={this.handleClick}>
         Click to load
       </button>
     )

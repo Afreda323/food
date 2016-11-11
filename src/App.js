@@ -21,9 +21,25 @@ class App extends Component {
       first: '',
       loading: undefined
      };
+     this.handleReset=this.handleReset.bind(this);
      this.handleSubmit=this.handleSubmit.bind(this);
      this.handleTypeSubmit=this.handleTypeSubmit.bind(this);
      this.handlePriceSubmit=this.handlePriceSubmit.bind(this);
+   }
+   handleReset(){
+     this.setState({
+       location: '',
+       lat: '',
+       lon: '',
+       type: '',
+       price: '',
+       results: '',
+       first: '',
+       loading: undefined
+     });
+     document.querySelector('.geo').className = "container geo z-depth-2";
+     document.querySelector('.type').className = "container type z-depth-2 hidden";
+     document.querySelector('.price').className = "container price z-depth-2 hidden";
    }
    handleSubmit(term){
      this.setState({lat: term[0], lon: term[1]});
@@ -34,7 +50,7 @@ class App extends Component {
    handlePriceSubmit(term){
      this.setState({price: term});
      this.setState({loading: true});
-     axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyCYUjdISCd1KAhpstLOJpKPG1EfkXg-Scw&type=restaurant&query=${this.state.type + "+restaurant"}&radius=5000&location=${this.state.lat},${this.state.lon}&minprice=${this.state.price}&maxprice=${this.state.price}&opennow`)
+     axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyCYUjdISCd1KAhpstLOJpKPG1EfkXg-Scw&type=restaurant&query=${this.state.type + "+restaurant"}&radius=25000&location=${this.state.lat},${this.state.lon}&minprice=${this.state.price}&maxprice=${this.state.price}&opennow`)
          .then(function (response) {
            this.setState({results: response.data.results});
            /* GET DETAILS OF FIRST PLACE */
@@ -60,11 +76,14 @@ class App extends Component {
     let resultComp;
     if(this.state.results !== ""){
       resultComp = <Results  results={this.state.results} first={this.state.first} photo="this.state.photo"/>;
+    }else{
+      resultComp = "";
     };
     return (
       <div className="App">
         <Nav />
         <Home />
+        <ResetBtn onReset={this.handleReset}/>
         <Geo onSubmit={(term) => this.handleSubmit(term)} />
         <Type onTypeSubmit={(term) => this.handleTypeSubmit(term)}/>
         <Price onPriceSubmit={(term) => this.handlePriceSubmit(term)}/>
@@ -74,6 +93,24 @@ class App extends Component {
       </div>
     );
   }
+}
+
+//Create the reset button
+class ResetBtn extends Component{
+  constructor(props){
+     super(props);
+     this.handleClick=this.handleClick.bind(this);
+   }
+   handleClick(event){
+     this.props.onReset();
+   }
+   render(){
+     return(
+       <button className="btn-floating btn-large waves-effect waves-light red z-depth-3" onClick={this.handleClick}>
+         <i className="material-icons">autorenew</i>
+       </button>
+     )
+   }
 }
 
 export default App;

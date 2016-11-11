@@ -1,6 +1,9 @@
 import React from 'react';
 
 const ListLi = ({result, photoId}) => {
+
+    const direct = `https://www.google.com/maps/place/${result.formatted_address.replace(", United States", "").replace(/ /g, "+")}`;
+
       return (
         <div className="listItem z-depth-1">
           <div className="row">
@@ -15,7 +18,9 @@ const ListLi = ({result, photoId}) => {
               <p className="flow-text">
                 <i className="fa fa-star" aria-hidden="true"></i> Rating: {result.rating}
                 <br />
-                <i className="fa fa-map-marker" aria-hidden="true"></i> {result.formatted_address.replace(", United States", "")}
+                <a href={direct} className="direct">
+                  <i className="fa fa-map-marker" aria-hidden="true"></i> {result.formatted_address.replace(", United States", "")}
+                </a>
               </p>
             </div>
           </div>

@@ -16,7 +16,7 @@ class Type extends React.Component{
  }
  handleSubmit(event){
    if (this.state.type !== '') {
-     document.querySelector('.type').className = "hidden";
+     document.querySelector('.type').className = "hidden type";
      document.querySelector('.price').className = "container price z-depth-2";
    }
    this.props.onTypeSubmit(this.state.type);

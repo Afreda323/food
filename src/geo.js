@@ -14,7 +14,7 @@ class Geo extends React.Component {
     event.preventDefault();
     const { address } = this.state
     if (this.state.address !== '') {
-      document.querySelector('.geo').className = "hidden";
+      document.querySelector('.geo').className = "hidden geo";
       document.querySelector('.type').className = "container type z-depth-2";
     }
 

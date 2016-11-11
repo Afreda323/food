@@ -20,7 +20,7 @@ class Price extends React.Component{
  handleSubmit(event){
    this.props.onPriceSubmit(this.state.price);
    if (this.state.price !== '') {
-     document.querySelector('.price').className = "hidden";
+     document.querySelector('.price').className = "hidden price";
    }
  }
   render(){
