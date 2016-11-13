@@ -1,0 +1,277 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #fafafa;
+}
+/****************
+            GENERAL
+                          ************/
+
+.hidden{
+  opacity: 0;
+  position: absolute;
+  left: -100%;
+}
+*{
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 300;
+}
+.container{
+  animation: slide .75s;
+  background: #fcfcfc;
+  min-height: 550px;
+  padding: 4em 2.5em 3em;
+  margin: 100px auto;
+}
+p{
+  margin: 0;
+}
+.flow-text span{
+  font-size: 1rem;
+  color: #999;
+   display: block;
+}
+.big-pic{
+  max-height: 300px;
+  max-width: 100%;
+  border-radius: 15px;
+}
+.large{
+  background: #fcfcfc;
+  border: 8px solid black;
+  padding: 15px;
+  -webkit-box-shadow: 10px 10px 39px -12px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 39px -12px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 39px -12px rgba(0,0,0,0.75);
+  border-radius: 100%;
+}
+
+
+/****************
+            BUTTONS and FORMS
+                          ************/
+.btn{
+  margin-top: 20px;
+  margin-right: 10px;
+}
+.btn:hover{
+  background-color: #FF8A80 !important;
+}
+.btn:active{
+  padding-left: 28px;
+  padding-right: 28px;
+  margin-top: 22px;
+}
+.box-label{
+  margin-bottom: 12px;
+  width: 100%;
+}
+input:focus{
+  border-color:red;
+}
+.btn-floating{
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+}
+.btn-floating:hover{
+  background: #FF8A80 !important;
+}
+/****************
+            NAV
+                          ************/
+nav{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+nav .material-icons{
+  font-size: 2em !important;
+  margin-right: 0 !important;
+  padding: 0 10px;
+}
+.about{
+  padding:0 1.5em;
+}
+.about:hover{
+  cursor: pointer;
+}
+/****************
+            HOME
+                          ************/
+@keyframes slide-in {
+  from{
+    opacity: 0;
+    top: -100vh;
+  }
+}
+@keyframes slide-out {
+  from{
+    opacity: 1;
+    display: block;
+  }
+  to{
+    top: -100vh;
+    opacity: 0;
+  }
+}
+.slide-in{
+  animation: slide-in .5s;
+}
+.slide-out{
+  animation: slide-out .5s;
+  opacity: 0;
+  pointer-events: none;
+}
+.home{
+  padding: 8em 2em 6em;
+  color: #eee;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+}
+.home h1{
+  margin-top: 0;
+}
+/****************
+            RESULTS
+                          ************/
+@keyframes slide {
+  from{
+    margin-top: 30em;
+  }
+}
+.results h1{
+  margin: 10px 0 0;
+}
+.mapCont {
+    margin: 20px 0 1em;
+    position: relative;
+    width: 100%;
+    height: 250px;
+}
+.map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 250px;
+}
+.results h1{
+  font-size: 3.2em;
+}
+.listItem:nth-child(odd){
+  background: #f1f1f1;
+}
+.direct{
+  color: #424242;
+}
+.direct:hover{
+  color: #F44336;
+}
+.listItem{
+  animation: slide 1s;
+  background: white;
+  padding: 10px;
+  margin: 5px 0;
+}
+.listItem h4, .listItem .flow-text{
+  margin: 0;
+}
+.listItem .large{
+  background: white;
+  padding: 0;
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background: none;
+  padding-top: 25px;
+}
+/****************
+            FOOTER
+                          ************/
+footer{
+  padding: 4em 1em;
+}
+.logo{
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
+  display: block;
+  width: 100px;
+  margin: auto;
+  border-radius: 100%;
+}
+.google{
+  margin-top: 10px;
+  width: 150px;
+  font-size: .5em;
+}
+
+
+@media (max-width: 601px){
+  .btn-floating{
+    bottom: 16px;
+    right: 16px;
+  }
+  .container{
+    padding: 4em 10px;
+    width: 99%;
+    margin: 80px auto;
+  }
+.listItem .large{
+      display: none
+    }
+}
+
+
+
+
+
+/****************
+            Loader
+                          ************/
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+}
+.loader {
+  margin: 100px auto;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(0, 0, 0, 0.2);
+  border-right: 1.1em solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1.1em solid rgba(0, 0, 0, 0.2);
+  border-left: 1.1em solid #000;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

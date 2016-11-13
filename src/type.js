@@ -13,13 +13,31 @@ class Type extends React.Component{
    this.setState({
      type: event.target.value
    });
+   //Slide the info in
+   if(document.querySelector('.other').classList.contains('hidden') || document.querySelector('.other').classList.contains('slide-out')){
+   }else{
+     //Slide the info out
+     document.querySelector('.other').className = "other slide-out";
+   }
+ }
+ handleChange(event){
+   this.setState({
+     type: event.target.value
+   });
  }
  handleSubmit(event){
-   if (this.state.type !== '') {
-     document.querySelector('.type').className = "hidden type";
-     document.querySelector('.price').className = "container price z-depth-2";
-   }
+    document.querySelector('.type').className = "hidden type";
+    document.querySelector('.price').className = "container price z-depth-2";
    this.props.onTypeSubmit(this.state.type);
+ }
+ handleOther(){
+   //Slide the info in
+   if(document.querySelector('.other').classList.contains('hidden') || document.querySelector('.other').classList.contains('slide-out')){
+     document.querySelector('.other').className = "other slide-in";
+   }else{
+     //Slide the info out
+     document.querySelector('.other').className = "other slide-out";
+   }
  }
   render(){
     return(
@@ -43,12 +61,20 @@ class Type extends React.Component{
                     <label className="box-label" htmlFor="pizza">Pizza</label>
                   </p>
                   <p>
-                    <input type="radio" name="foodGroup"  id="american" value="american" onClick={(event) =>  this.handleClick(event)}/>
-                    <label className="box-label" htmlFor="american">American</label>
+                    <input type="radio" name="foodGroup"  id="SteakHouse" value="SteakHouse" onClick={(event) =>  this.handleClick(event)}/>
+                    <label className="box-label" htmlFor="SteakHouse">Steakhouse</label>
                   </p>
                   <p>
                     <input type="radio" name="foodGroup"  id="vegan" value="vegan" onClick={(event) =>  this.handleClick(event)}/>
                     <label className="box-label" htmlFor="vegan">Vegan</label>
+                  </p>
+                  <p>
+                    <input type="radio" name="foodGroup"  id="sushi" value="sushi" onClick={(event) =>  this.handleClick(event)}/>
+                    <label className="box-label" htmlFor="sushi">Sushi</label>
+                  </p>
+                  <p>
+                    <input type="radio" name="foodGroup"  id="breakfast" value="breakfast" onClick={(event) =>  this.handleClick(event)}/>
+                    <label className="box-label" htmlFor="breakfast">Breakfast</label>
                   </p>
                 </div>
                 <div className="col m6 s12">
@@ -65,8 +91,17 @@ class Type extends React.Component{
                     <label className="box-label" htmlFor="asian">Asian</label>
                   </p>
                   <p>
-                    <input type="radio" name="foodGroup"  id="breakfast" value="breakfast" onClick={(event) =>  this.handleClick(event)}/>
-                    <label className="box-label" htmlFor="breakfast">Breakfast</label>
+                    <input type="radio" name="foodGroup"  id="burger" value="burger" onClick={(event) =>  this.handleClick(event)}/>
+                    <label className="box-label" htmlFor="burger">Burgers</label>
+                  </p>
+                  <p>
+                    <input type="radio" name="foodGroup"  id="rand" value="" onClick={(event) =>  this.handleClick(event)}/>
+                    <label className="box-label" htmlFor="rand">Random</label>
+                  </p>
+                  <p>
+                    <input type="radio" name="foodGroup"  id="other" value="" onClick={(event) =>  this.handleOther(event)}/>
+                    <label className="box-label" htmlFor="other">Other</label>
+                    <input placeholder="Please specify" id="other" type="text" className="validate other hidden" onChange={(event) =>  this.handleChange(event)} />
                   </p>
                 </div>
               </div>

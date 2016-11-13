@@ -3,6 +3,7 @@ import List from './list.js';
 import Btn from './button.js';
 
 const Results = ({ results, first }) => {
+  /* _____IMAGES COMING SOON_______
   let photo, alt;
   if(results[0].photos){
     photo = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${results[0].photos[0].photo_reference}&key=AIzaSyCYUjdISCd1KAhpstLOJpKPG1EfkXg-Scw`;
@@ -10,7 +11,7 @@ const Results = ({ results, first }) => {
   }else {
     photo = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png";
     alt="random food photo"
-  }
+  }*/
   let numberFix;
   if (first.formatted_phone_number) {
     numberFix = first.formatted_phone_number.replace(" ", "");
@@ -49,7 +50,7 @@ const Results = ({ results, first }) => {
         </div>
         <br /><br />
         <div className="center-align">
-          <img className="big-pic z-depth-2" src={photo} alt={alt} />
+
         </div>
         <br /><br /><br />
         <h1 className="center-align"><i className="large material-icons">thumb_down</i></h1>

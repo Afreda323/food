@@ -4,9 +4,8 @@ import Home from './home.js';
 import Geo from './geo.js';
 import Price from './price.js';
 import Type from './type.js';
-import Results from './results.js';
 import Footer from './footer.js';
-import axios from 'axios';
+import Results from './results.js';
 
 class App extends Component {
   constructor(props){
@@ -50,23 +49,64 @@ class App extends Component {
    handlePriceSubmit(term){
      this.setState({price: term});
      this.setState({loading: true});
-     axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyCYUjdISCd1KAhpstLOJpKPG1EfkXg-Scw&type=restaurant&query=${this.state.type + "+restaurant"}&radius=25000&location=${this.state.lat},${this.state.lon}&minprice=${this.state.price}&maxprice=${this.state.price}&opennow`)
-         .then(function (response) {
-           this.setState({results: response.data.results});
-           /* GET DETAILS OF FIRST PLACE */
-           axios.get(`https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyCYUjdISCd1KAhpstLOJpKPG1EfkXg-Scw&placeid=${this.state.results[0].place_id}`)
-               .then(function (response) {
-                 this.setState({first: response.data.result});
-                 this.setState({loading: false});
-               }.bind(this))
-               .catch(function (error) {
-                 console.log(error);
-               });
-         }.bind(this))
-         .catch(function (error) {
-           console.log(error);
-         });
-   }
+
+    /* axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyCYUjdISCd1KAhpstLOJpKPG1EfkXg-Scw&type=restaurant&query=${this.state.type + "+restaurant"}&radius=25000&location=${this.state.lat},${this.state.lon}&minprice=${this.state.price}&maxprice=${this.state.price}&opennow`)
+          .then(function (response) {
+            this.setState({results: response.data.results});
+            axios.get(`https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyCYUjdISCd1KAhpstLOJpKPG1EfkXg-Scw&placeid=${this.state.results[0].place_id}`)
+                .then(function (response) {
+                  this.setState({first: response.data.result});
+                  this.setState({loading: false});
+                }.bind(this))
+                .catch(function (error) {
+                  console.log(error);
+                });
+          }.bind(this))
+          .catch(function (error) {
+            console.log(error);
+          });*/
+     var self = this;
+        var location = new window.google.maps.LatLng(this.state.lat, this.state.lon);
+        var service;
+        if(self.state.type === ""){
+          var query = "restaurant";
+        }else {
+          var query = self.state.type + "+restaurant";
+        }
+
+        var map = document.getElementById("map");
+        var request = {
+         query: query,
+         type: 'restaurant',
+         location: location,
+         radius: '20000',
+         minprice: self.state.price,
+         maxprice: self.state.price
+       };
+      service = new window.google.maps.places.PlacesService(map);
+      service.textSearch(request, callback);
+      function callback(results, status) {
+       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+         self.setState({results: results});
+         var service2;
+         var request2 = {
+            placeId: self.state.results[0].place_id
+          };
+
+          service2 = new window.google.maps.places.PlacesService(map);
+          service2.getDetails(request2, callback2);
+
+          function callback2(place, status) {
+            if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+              self.setState({first: place});
+              self.setState({loading: false});
+            }
+          }
+       }
+    }
+}
+
+    /*  */
 
   render() {
     let loader;
