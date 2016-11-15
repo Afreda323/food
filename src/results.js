@@ -12,14 +12,19 @@ const Results = ({ results, first }) => {
     photo = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png";
     alt="random food photo"
   }*/
+
+   /****************______Remove spaces from phone number________***********/
   let numberFix;
   if (first.formatted_phone_number) {
     numberFix = first.formatted_phone_number.replace(" ", "");
   }
+  /****************______Concat address and shorten it_________***********/
   const direct = `https://www.google.com/maps/place/${results[0].formatted_address.replace(", United States", "").replace(/ /g, "+")}`;
+  /****************______href phone number_________***********/
   const number = `tel:${numberFix}`;
   let stars;
   let website;
+   /****************______Render stars based on review score_________***********/
   if(results[0].rating <= 1){
     stars = <div><i className="fa fa-star" aria-hidden="true"></i></div>;
   }else if(results[0].rating <= 2){
@@ -31,6 +36,7 @@ const Results = ({ results, first }) => {
   }else if(results[0].rating <= 5){
     stars = <div><i className="fa fa-star" aria-hidden="true"></i><i className="fa fa-star" aria-hidden="true"></i><i className="fa fa-star" aria-hidden="true"></i><i className="fa fa-star" aria-hidden="true"></i><i className="fa fa-star" aria-hidden="true"></i></div>;
   }
+  /****************______If result has website, show website_________***********/
   if(first.website){
     website = <a href={first.website} className="btn red">Visit Website</a>
   }

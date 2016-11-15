@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ListLi = ({result, photoId}) => {
-
+ /****************______Concat address and shorten it_________***********/
     const direct = `https://www.google.com/maps/place/${result.formatted_address.replace(", United States", "").replace(/ /g, "+")}`;
 
       return (

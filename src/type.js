@@ -21,11 +21,13 @@ class Type extends React.Component{
    }
  }
  handleChange(event){
+  /****************______Set type of food to state_________***********/
    this.setState({
      type: event.target.value
    });
  }
  handleSubmit(event){
+   /****************______Hide div and send state to APP_________***********/
     document.querySelector('.type').className = "hidden type";
     document.querySelector('.price').className = "container price z-depth-2";
    this.props.onTypeSubmit(this.state.type);
